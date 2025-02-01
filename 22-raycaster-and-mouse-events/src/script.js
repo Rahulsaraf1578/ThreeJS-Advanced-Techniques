@@ -128,11 +128,22 @@ const gltfLoader = new GLTFLoader()
 gltfLoader.load(
     'models/Duck/glTF-Binary/Duck.glb',
     (gltf)=>{
+        gltf.scene.position.y(-1.2)
         scene.add(gltf.scene)
     }
 )
 
+/**Lights
+ * 
+*/
+// Ambient light
+const ambientLight = new THREE.AmbientLight('#ffffff',0.3)
+scene.add(ambientLight)
 
+// Directional light
+const directionalLight = new THREE.DirectionalLight('#ffffff',0.9)
+directionalLight.position.set(1, 2, 3)
+scene.add(directionalLight)
 /**
  * Animate
  */
