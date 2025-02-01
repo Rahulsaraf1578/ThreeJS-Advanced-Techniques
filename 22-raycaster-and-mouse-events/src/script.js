@@ -42,17 +42,17 @@ scene.add(object1, object2, object3)
 
 const raycaster = new THREE.Raycaster()
 
-const rayOrigin = new THREE.Vector3(-3,0,0)
-const rayDirection = new THREE.Vector3(10,0,0)
-rayDirection.normalize()
+// const rayOrigin = new THREE.Vector3(-3,0,0)
+// const rayDirection = new THREE.Vector3(10,0,0)
+// rayDirection.normalize()
 
-raycaster.set(rayOrigin,rayDirection)
+// raycaster.set(rayOrigin,rayDirection)
 
-const intersect = raycaster.intersectObject(object1)        // This is also array because with one object we can intersect multiple times ex. donut
-console.log(intersect)
+// const intersect = raycaster.intersectObject(object1)        // This is also array because with one object we can intersect multiple times ex. donut
+// console.log(intersect)
 
-const intersects = raycaster.intersectObjects([object1, object2, object3])
-console.log(intersects)
+// const intersects = raycaster.intersectObjects([object1, object2, object3])
+// console.log(intersects)
 
 /**
  * Sizes
@@ -106,6 +106,21 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    // Update objects
+    object1.position.y = Math.sin(elapsedTime*0.3) * 1.5
+    object2.position.y = Math.sin(elapsedTime*0.8) * 1.5
+    object3.position.y = Math.sin(elapsedTime*1.4) * 1.5
+
+    // Crete a ray
+    const rayOrigin = new THREE.Vector3(-3,0,0)
+    const rayDirection = new THREE.Vector3(1,0,0)
+    rayDirection.normalize()
+    raycaster.set(rayOrigin,rayDirection)
+
+    const objectsToTest = [object1,object2,object3]
+    const intersects = raycaster.intersectObjects(objectsToTest)
+    console.log(intersects.length)
 
     // Update controls
     controls.update()
