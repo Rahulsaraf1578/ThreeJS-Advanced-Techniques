@@ -48,6 +48,12 @@ rayDirection.normalize()
 
 raycaster.set(rayOrigin,rayDirection)
 
+const intersect = raycaster.intersectObject(object1)        // This is also array because with one object we can intersect multiple times ex. donut
+console.log(intersect)
+
+const intersects = raycaster.intersectObjects([object1, object2, object3])
+console.log(intersects)
+
 /**
  * Sizes
  */
