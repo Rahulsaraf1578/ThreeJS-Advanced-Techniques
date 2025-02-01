@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import GUI from 'lil-gui'
 
 /**
@@ -119,6 +120,18 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+/**
+ * Models
+*/
+const gltfLoader = new GLTFLoader()
+gltfLoader.load(
+    'models/Duck/glTF-Binary/Duck.glb',
+    (gltf)=>{
+        scene.add(gltf.scene)
+    }
+)
+
 
 /**
  * Animate
