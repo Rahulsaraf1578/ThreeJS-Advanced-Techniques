@@ -36,6 +36,11 @@ const updateAllMaterials = () =>{
 /**
  * Environment map
 */
+scene.backgroundBlurriness = 0.2
+scene.backgroundIntensity = 5
+
+gui.add(scene, 'backgroundBlurriness').min(0).max(1).step(0.001)
+gui.add(scene, 'backgroundIntensity').min(0).max(10).step(0.001)
 
 // Global intensity
 global.envMapIntensity =  1
