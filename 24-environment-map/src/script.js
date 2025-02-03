@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import GUI from 'lil-gui'
 
+
 /**
  * 
 */
@@ -33,13 +34,20 @@ const environmentMap = cubeTextureLoader.load([
     'environmentMaps/0/nz.png',
 ])
 
+scene.background = environmentMap
+
 /**
  * Torus Knot
  */
 const torusKnot = new THREE.Mesh(
     new THREE.TorusKnotGeometry(1, 0.4, 100, 16),
-    new THREE.MeshBasicMaterial()
+    new THREE.MeshStandardMaterial({
+        roughness:0.3,
+        metalness:1,
+        color:0xaaaaaa
+    })
 )
+torusKnot.position.x = -4
 torusKnot.position.y = 4
 scene.add(torusKnot)
 
