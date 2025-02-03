@@ -15,6 +15,7 @@ const cubeTextureLoader = new THREE.CubeTextureLoader()
  */
 // Debug
 const gui = new GUI()
+const global = {}
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -22,9 +23,25 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+// Update all materials
+const updateAllMaterials = () =>{
+
+    scene.traverse((child)=>{
+        if(child.isMesh && child.material.isMeshStandardMaterial)(
+            child.material.envMapIntensity = global.envMapIntensity
+        )
+    })
+}
+
 /**
  * Environment map
 */
+
+// Global intensity
+global.envMapIntensity =  1
+gui.add(global, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
+
+// LDR cube texture
 const environmentMap = cubeTextureLoader.load([
     'environmentMaps/0/px.png',
     'environmentMaps/0/nx.png',
@@ -33,7 +50,7 @@ const environmentMap = cubeTextureLoader.load([
     'environmentMaps/0/pz.png',
     'environmentMaps/0/nz.png',
 ])
-
+scene.environment = environmentMap
 scene.background = environmentMap
 
 /**
@@ -60,6 +77,7 @@ gltfLoader.load(
     (gltf)=>{
         gltf.scene.scale.set(10,10,10)
         scene.add(gltf.scene)
+        updateAllMaterials()
     }
 )
 
