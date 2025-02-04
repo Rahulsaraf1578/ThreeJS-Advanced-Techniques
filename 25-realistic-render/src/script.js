@@ -9,6 +9,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
  */
 const gltfLoader = new GLTFLoader()
 const rgbeLoader = new RGBELoader()
+const textureLoader = new THREE.TextureLoader()
 
 /**
  * Base
@@ -102,6 +103,12 @@ gltfLoader.load(
         updateAllMaterials()
     }
 )
+
+// Floor
+
+const floorColorTexture = textureLoader.load('/texture/wood_cabinet_worn_long/wood_cabinet_worn_long_arm_1k')
+const floorNormalTexture = textureLoader.load('/texture/wood_cabinet_worn_long/')
+const floorAORoughnessMetalTexture = textureLoader.load('/texture/wood_cabinet_worn_long/')
 
 /**
  * Sizes
