@@ -61,10 +61,10 @@ gui.add(global, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAll
 // scene.background = environmentMap
 
 // RGBE loader
-rgbeLoader.load('environmentMaps/0/2k.hdr',(environmentMap)=>{
+rgbeLoader.load('environmentMaps/belnder-2K.hdr',(environmentMap)=>{
     environmentMap.mapping = THREE.EquirectangularReflectionMapping
 
-    scene.background = environmentMap
+    // scene.background = environmentMap
     scene.environment = environmentMap
 })
 
